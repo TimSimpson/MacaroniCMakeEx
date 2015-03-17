@@ -1,0 +1,35 @@
+// A simple unit test for the World class. Note you could cut and paste the
+// contents of this file into world.mcpp and everything would work the same.
+~unit "WorldTest" type=test
+{
+    ~import MacaroniExample::World;
+
+    ~block "cpp"
+    {
+        int main(int argc, char ** argv)
+        {
+            World w;
+            // Return a good exit code (zero) if the value is as expected.
+            return w.Response() == ":)" ? 0 : 1;
+        }
+    }
+
+    // This is a superior way of writing the above test using the Boost Test
+    // framework. To enable it, erase the ~block above and uncomment this
+    // section below, and uncomment the part in project.lua that loads Boost
+    // Test. Note that with the section commented out, Macaroni won't even
+    // generate the code block.
+    /*
+    ~block "cpp"
+    {
+        #define BOOST_TEST_MODULE WorldTests
+        #include <boost/test/unit_test.hpp>
+
+        BOOST_AUTO_TEST_CASE(receive_happy_response)
+        {
+            World w;
+            BOOST_REQUIRE_EQUAL(":)", w.Response());
+        }
+    }
+    */
+}

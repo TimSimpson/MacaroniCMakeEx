@@ -1,0 +1,33 @@
+// This directive tells Macaroni to put everything we create into a H file
+// / CPP file pair called "HelloWorld", and to also tell the build file to
+// create an executable with that name.
+//
+// Note that Macaroni will by default put any plain .C, .CC, or .CPP files it
+// finds in the source directory into the main library generated for a project.
+// To explicitly put them into a different build target requires explicitly
+// stating which target owns them in the project.lua file.
+//
+~unit "HelloWorld" type=exe
+{
+    // Macaroni knows of the following imports thanks to its dependency on the
+    // project Macaroni/CppStd/2003, as stated in project.lua.
+    ~import std::cin;
+    ~import std::cout;
+    ~import std::endl;
+
+    // Macaroni always assumes imports exist, meaning problems don't arise
+    // until the code generation phase. This is defined in world.mcpp.
+    // Macaroni always uses full logical paths of a type name to bring
+    // an item into scope rather than the physical file path.
+    ~import MacaroniExample::World;
+
+    ~block "cpp"
+    {
+        int main(int argc, char ** argv)
+        {
+            cout << "Hello World!" << endl;
+            World world;
+            cout << world.Response() << endl;
+        }
+    }
+}

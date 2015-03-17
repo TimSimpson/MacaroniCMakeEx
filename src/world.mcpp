@@ -1,0 +1,14 @@
+// Defines the class "MacaroniExample::World". Macaroni will by default put
+// this into an H file / CPP file pair located at MacaroniExample/World.[h|cpp]
+// in the generated output directory, which by default is "target".
+~import std::string;
+
+~namespace MacaroniExample;
+
+class World
+{
+    public string Response() const
+    {
+        return ":)";
+    }
+};
